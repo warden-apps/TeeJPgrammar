@@ -45,7 +45,7 @@ body{
 .wrap{max-width:580px;margin:0 auto;padding:0 18px 72px;position:relative;z-index:1}
 :focus-visible{outline:2px solid var(--bronze);outline-offset:2px}
 
-/* ── ambient layer ──────────────────────── */
+/* ── ambient ────────────────────────────── */
 .aura{
   position:fixed;left:50%;top:-16%;width:min(160vw,940px);height:min(160vw,940px);
   transform:translateX(-50%);pointer-events:none;z-index:0;
@@ -59,24 +59,23 @@ body{
 .shade{
   position:fixed;right:-13%;top:5%;width:min(84vw,440px);height:auto;
   pointer-events:none;z-index:0;
-  animation:shade-drift 38s ease-in-out infinite alternate;
+  animation:shade-drift 44s ease-in-out infinite alternate;
 }
 @keyframes shade-drift{
   0%{transform:translateY(0) translateX(0)}
-  100%{transform:translateY(-22px) translateX(9px)}
+  100%{transform:translateY(-24px) translateX(10px)}
 }
 .aura.low{
   left:16%;top:auto;bottom:-34%;width:min(128vw,760px);height:min(128vw,760px);
   transform:none;
   background:radial-gradient(closest-side, rgba(198,148,82,.14), rgba(198,148,82,.045) 46%, rgba(198,148,82,0) 72%);
-  animation:breathe-low 15s ease-in-out infinite alternate;
+  animation:breathe-low 20s ease-in-out infinite alternate;
 }
 @keyframes breathe-low{
   from{opacity:.42;transform:scale(.9)}
   to{opacity:.92;transform:scale(1.08)}
 }
 
-/* motes — layered depth */
 .motes{position:fixed;left:0;right:0;top:0;bottom:0;overflow:hidden;pointer-events:none;z-index:0}
 .mote{position:absolute;bottom:-8vh;animation-name:rise;animation-timing-function:linear;animation-iteration-count:infinite}
 .mote i{
@@ -84,17 +83,16 @@ body{
   background:radial-gradient(circle, rgba(242,212,150,.95) 0%, rgba(214,170,92,.34) 52%, rgba(214,170,92,0) 100%);
   animation-name:sway;animation-timing-function:ease-in-out;animation-iteration-count:infinite;animation-direction:alternate;
 }
-.mote.depth-far i{filter:blur(1.1px)}
-.mote.depth-near i{filter:blur(0px);box-shadow:0 0 7px rgba(214,170,92,.38)}
+.mote.depth-far i{filter:blur(1.2px)}
+.mote.depth-near i{filter:blur(0px);box-shadow:0 0 8px rgba(214,170,92,.42)}
 @keyframes rise{
   0%{transform:translateY(0);opacity:0}
   9%{opacity:1}
-  84%{opacity:.45}
+  84%{opacity:.4}
   100%{transform:translateY(-118vh);opacity:0}
 }
 @keyframes sway{from{transform:translateX(-11px)}to{transform:translateX(11px)}}
 
-/* slab gleam */
 .slab{position:relative;overflow:hidden}
 .slab::after{
   content:"";position:absolute;top:-60%;bottom:-60%;width:38%;left:-45%;pointer-events:none;
@@ -117,7 +115,7 @@ body{
 }
 @keyframes lamp{
   from{text-shadow:0 0 12px rgba(203,157,80,.10)}
-  to{text-shadow:0 0 36px rgba(214,170,92,.48)}
+  to{text-shadow:0 0 38px rgba(214,170,92,.50)}
 }
 .mast .rom{
   font-family:var(--disp);font-size:11px;letter-spacing:.3em;text-indent:.3em;
@@ -129,7 +127,7 @@ body{
 .counsel{
   margin:26px 0 0;padding:22px 4px 24px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
   text-align:center;position:relative;
-  animation:counsel-float 14s ease-in-out infinite alternate;
+  animation:counsel-float 16s ease-in-out infinite alternate;
 }
 @keyframes counsel-float{
   from{transform:translateY(0)}
@@ -264,7 +262,7 @@ textarea.tall{min-height:230px;line-height:1.72}
 .scalecap{display:flex;justify-content:flex-end;gap:14px;font-family:var(--disp);font-size:9.5px;letter-spacing:.16em;
   text-transform:uppercase;color:var(--dim);margin-top:11px}
 
-/* ── mosaic calendar ────────────────────── */
+/* ── mosaic ─────────────────────────────── */
 .slab{background:var(--sand);border-radius:2px;padding:17px 15px 19px;color:#413018;
   background-image:linear-gradient(148deg, rgba(255,246,224,.30) 0%, rgba(255,246,224,0) 40%),
                    linear-gradient(28deg, rgba(122,96,54,.20) 0%, rgba(122,96,54,0) 48%);
@@ -283,7 +281,7 @@ textarea.tall{min-height:230px;line-height:1.72}
   font-family:var(--mono);font-size:11px;color:#4A3820;cursor:pointer;
   animation:set .32s ease both;transition:box-shadow .18s ease;
 }
-.tess:hover{box-shadow:inset 0 0 0 1px rgba(94,72,38,.48),0 0 0 2px rgba(180,137,78,.25)}
+.tess:hover{box-shadow:inset 0 0 0 1px rgba(94,72,38,.48),0 0 0 3px rgba(180,137,78,.28)}
 @keyframes set{from{opacity:0;transform:scale(.86)}to{opacity:1;transform:none}}
 .tess.pad{background:transparent;box-shadow:none;cursor:default}
 .tess.pad:hover{box-shadow:none}
@@ -293,9 +291,9 @@ textarea.tall{min-height:230px;line-height:1.72}
 .tess.l4{background:var(--t4);color:#F6EDD8}
 .tess.l5{background:var(--t5);color:#F7E4EA}
 .tess.now{box-shadow:inset 0 0 0 2px var(--bronze)}
-.tess.now:hover{box-shadow:inset 0 0 0 2px var(--bronze),0 0 0 4px rgba(180,137,78,.20)}
+.tess.now:hover{box-shadow:inset 0 0 0 2px var(--bronze),0 0 0 5px rgba(180,137,78,.22)}
 .tess.pick{box-shadow:inset 0 0 0 2px var(--tyrian)}
-.tess.pick:hover{box-shadow:inset 0 0 0 2px var(--tyrian),0 0 0 4px rgba(138,54,96,.18)}
+.tess.pick:hover{box-shadow:inset 0 0 0 2px var(--tyrian),0 0 0 5px rgba(138,54,96,.20)}
 .tess .ex{position:absolute;top:3px;right:3px;width:5px;height:5px;border-radius:50%;background:var(--verdigris)}
 .key{display:flex;margin-top:15px;border-top:1px solid var(--sand-rule);padding-top:12px}
 .key div{flex:1;text-align:center}
@@ -311,18 +309,20 @@ textarea.tall{min-height:230px;line-height:1.72}
 
 /* ── diverging bar chart ────────────────── */
 .diverge-wrap{margin-top:16px}
-.diverge-legend{display:flex;justify-content:center;gap:22px;margin-bottom:10px;font-family:var(--disp);font-size:9.5px;letter-spacing:.12em;
+.diverge-legend{display:flex;justify-content:center;gap:28px;margin-bottom:12px;font-family:var(--disp);font-size:9.5px;letter-spacing:.12em;
   text-transform:uppercase;color:var(--dim)}
 .diverge-legend span{display:flex;align-items:center;gap:6px}
-.diverge-legend span::before{content:"";display:block;width:11px;height:11px;border-radius:2px}
+.diverge-legend span::before{content:"";display:block;width:12px;height:12px;border-radius:2px}
 .diverge-legend .leg-up::before{background:var(--verdigris)}
 .diverge-legend .leg-down::before{background:var(--bronze-lo)}
-.diverge-legend .leg-due::before{background:var(--bronze-ghost);border:1px solid rgba(180,137,78,.35)}
-.diverge{display:flex;align-items:stretch;height:70px;gap:2px}
-.diverge .col{flex:1;position:relative;min-width:6px}
+.diverge-legend .leg-due::before{background:var(--bronze-ghost);border:1px solid rgba(180,137,78,.38)}
+.diverge{display:flex;align-items:stretch;height:96px;gap:2px;margin:0 1px}
+.diverge .col{flex:1;position:relative;min-width:7px}
 .diverge .col::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--rule);z-index:1}
 .diverge .col .up{position:absolute;left:0;right:0;bottom:50%;background:var(--verdigris);border-radius:1px 1px 0 0;z-index:3;min-height:2px}
-.diverge .col .due-bg{position:absolute;left:0;right:0;top:50%;background:var(--bronze-ghost);border-radius:0 0 1px 1px;z-index:2}
+.diverge .col .new-dot{position:absolute;left:50%;bottom:calc(50% + 3px);width:5px;height:5px;border-radius:50%;background:var(--verdigris);transform:translateX(-50%);z-index:5;display:none}
+.diverge .col .new-dot.visible{display:block}
+.diverge .col .due-bg{position:absolute;left:0;right:0;top:50%;background:var(--bronze-ghost);border-radius:0 0 1px 1px;z-index:2;box-shadow:inset 0 0 0 1px rgba(180,137,78,.22)}
 .diverge .col .down{position:absolute;left:0;right:0;top:50%;background:var(--bronze-lo);border-radius:0 0 1px 1px;z-index:4;min-height:2px}
 
 .sparkcap{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:8px}
@@ -335,7 +335,8 @@ textarea.tall{min-height:230px;line-height:1.72}
 .counsel-note{margin-top:17px;border-left:2px solid var(--tyrian);padding:9px 0 9px 13px;font-size:13.5px;line-height:1.6}
 
 /* ── record ─────────────────────────────── */
-.entry{border-bottom:1px solid var(--rule);padding:17px 0}
+.entry{border-bottom:1px solid var(--rule);padding:17px 0;animation:entry-rise .35s ease both}
+@keyframes entry-rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .entry .eh{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
 .entry .ed{font-family:var(--disp);font-size:15px;letter-spacing:.04em}
 .entry .en{font-family:var(--mono);font-size:10.5px;color:var(--dim);text-align:right}
@@ -346,6 +347,10 @@ textarea.tall{min-height:230px;line-height:1.72}
 .entry dd{margin:4px 0 0;font-size:14.5px;line-height:1.62;white-space:pre-wrap}
 .entry dl{margin:0}
 .empty{font-size:14px;color:var(--dim);line-height:1.75;margin-top:14px}
+
+/* load more */
+.load-more-wrap{text-align:center;margin-top:18px}
+.btn.load-more{min-width:160px}
 
 .btn{appearance:none;background:transparent;border:1px solid var(--rule);color:var(--ink);font-family:var(--disp);
   font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:13px 15px;border-radius:2px;cursor:pointer;min-height:46px;
@@ -358,7 +363,7 @@ textarea.tall{min-height:230px;line-height:1.72}
 .toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,18px);opacity:0;pointer-events:none;
   background:var(--sand);color:#33261A;font-family:var(--disp);font-size:11px;letter-spacing:.15em;
   text-transform:uppercase;padding:12px 20px;border-radius:2px;transition:.28s ease;z-index:9;
-  box-shadow:0 4px 16px rgba(0,0,0,.35)}
+  box-shadow:0 4px 14px rgba(0,0,0,.30)}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 footer{margin-top:30px;text-align:center;font-family:var(--disp);font-size:10px;letter-spacing:.17em;
   text-transform:uppercase;color:#6F5F6A;line-height:2}
@@ -367,6 +372,7 @@ footer{margin-top:30px;text-align:center;font-family:var(--disp);font-size:10px;
   *{animation:none!important;transition:none!important}
   .tess{opacity:1!important;transform:none!important}
   .view.on{opacity:1!important}
+  .entry{opacity:1!important;transform:none!important}
   .aura{opacity:.8;transform:translateX(-50%)}
   .aura.low{opacity:.6;transform:none}
   .motes{display:none}
@@ -570,6 +576,9 @@ footer{margin-top:30px;text-align:center;font-family:var(--disp);font-size:10px;
     <section class="panel">
       <h2>VII<small>The record</small></h2>
       <div id="recList"></div>
+      <div class="load-more-wrap" id="loadMoreWrap" style="display:none">
+        <button type="button" class="btn load-more" id="bLoadMore">Load 30 more</button>
+      </div>
     </section>
 
     <section class="panel">
@@ -642,11 +651,11 @@ if(!DB.days || typeof DB.days !== "object") DB.days = {};
 if(!DB.exam) DB.exam = "2026-12-06";
 function save(){ persist(DB); }
 
-/* migrate from v1 if present */
+/* migrate from v1 */
 if(!DB._migrated && localStorage.getItem("keikoroku.v1")){
   try{
     var old = JSON.parse(localStorage.getItem("keikoroku.v1"));
-    if(old && old.days && !DB.days) DB = old;
+    if(old && old.days) DB = old;
     DB._migrated = true; save();
   }catch(e){}
 }
@@ -679,6 +688,9 @@ function worked(d){ return !!(d && (num(d.rev) || num(d.nw))); }
 function $(id){ return document.getElementById(id); }
 var fields = {};
 
+/* ── pagination for records ── */
+var recOffset = 0, recKeys = [], allRecKeysSorted = [];
+
 /* ══ render: header + counsel ══ */
 function drawCounsel(){
   var d = fromKey(TODAY);
@@ -695,7 +707,7 @@ function drawHead(){
   $("dCount").innerHTML = out.join("<br>");
 }
 
-/* ══ render: tonight ══ */
+/* ══ tonight form ══ */
 function drawForm(){
   var d = day(sel), k;
   for(k in fields){ if(fields.hasOwnProperty(k)) fields[k].value = (d[k] === undefined ? "" : d[k]); }
@@ -821,33 +833,35 @@ function drawStats(){
   for(k in DB.days){ if(DB.days.hasOwnProperty(k) && examined(DB.days[k])) ex++; }
   $("s_exam").textContent = ex;
 
-  /* ── diverging bar chart: unified scale ── */
+  /* ── diverging chart ── */
   var globalMax = Math.max(maxRev, maxNw, maxDue, 1);
-  var halfH = 32; /* pixels available per direction */
+  var halfH = 44; /* available pixels each side of centre in 96px container */
   var diverge = $("diverge"); diverge.innerHTML = "";
   w.forEach(function(x){
     var col = document.createElement("div"); col.className = "col";
     var r = num(x.d.rev), n = num(x.d.nw), d = num(x.d.due);
 
-    /* upward: new cards */
     var hUp = Math.round(n / globalMax * halfH);
     if(n > 0 && hUp < 2) hUp = 2;
     var up = document.createElement("div"); up.className = "up";
     up.style.height = hUp + "px"; up.title = x.k + " · new: " + n;
 
-    /* downward: due queue (ghost) behind reviews */
+    var newDot = document.createElement("div");
+    newDot.className = "new-dot" + (n > 0 ? " visible" : "");
+    newDot.title = x.k + " · new: " + n;
+
     var hDue = Math.round(d / globalMax * halfH);
     if(d > 0 && hDue < 2) hDue = 2;
     var dueBg = document.createElement("div"); dueBg.className = "due-bg";
     dueBg.style.height = hDue + "px"; dueBg.title = x.k + " · due: " + d;
 
-    /* downward: actual reviews (solid, on top) */
     var hDown = Math.round(r / globalMax * halfH);
     if(r > 0 && hDown < 2) hDown = 2;
     var down = document.createElement("div"); down.className = "down";
     down.style.height = hDown + "px"; down.title = x.k + " · rev: " + r;
 
     col.appendChild(up);
+    col.appendChild(newDot);
     col.appendChild(dueBg);
     col.appendChild(down);
     diverge.appendChild(col);
@@ -856,7 +870,7 @@ function drawStats(){
   var a = w[0].k.split("-");
   $("sparkA").textContent = ord(+a[2]) + " " + MON[+a[1]-1].slice(0,3);
 
-  /* ── virtue profile ── */
+  /* virtue profile */
   var html = "", worst = null, worstAvg = 99, any = false;
   VIRTUES.forEach(function(v){
     var vals = [];
@@ -876,23 +890,33 @@ function drawStats(){
   $("noteBox").innerHTML = notes;
 }
 
-/* ══ record ══ */
-function drawRec(){
-  var keys = [], k;
-  for(k in DB.days){ if(DB.days.hasOwnProperty(k)){ var d = DB.days[k];
-    if(examined(d) || String(d.aim||"").trim() || String(d.extra||"").trim() || String(d.jrnl||"").trim()) keys.push(k); } }
-  keys.sort().reverse();
+/* ══ record with pagination ══ */
+function buildRecKeys(){
+  allRecKeysSorted = [];
+  for(var k in DB.days){
+    if(!DB.days.hasOwnProperty(k)) continue;
+    var d = DB.days[k];
+    if(examined(d) || String(d.aim||"").trim() || String(d.extra||"").trim() || String(d.jrnl||"").trim())
+      allRecKeysSorted.push(k);
+  }
+  allRecKeysSorted.sort().reverse();
+}
+function drawRec(append){
+  if(!append){ recOffset = 0; recKeys = allRecKeysSorted; }
   var box = $("recList");
-  if(!keys.length){
-    box.innerHTML = '<p class="empty">Nothing set down yet. Answer the three questions on the Tonight page and the night will be kept here, in order, with its count beside it. This page is the point of the whole thing — in a month you will be able to read what you were actually like.</p>';
+  if(!append) box.innerHTML = "";
+  if(!recKeys.length){
+    if(!append) box.innerHTML = '<p class="empty">Nothing set down yet. Answer the three questions on the Tonight page and the night will be kept here, in order, with its count beside it. This page is the point of the whole thing — in a month you will be able to read what you were actually like.</p>';
+    $("loadMoreWrap").style.display = "none";
     return;
   }
+  var chunk = recKeys.slice(recOffset, recOffset + 30);
   var html = "";
-  keys.slice(0,150).forEach(function(k){
-    var d = DB.days[k], p = k.split("-"), dt = fromKey(k), i;
+  chunk.forEach(function(k, idx){
+    var d = DB.days[k], p = k.split("-"), dt = fromKey(k);
     var marks = "";
     VIRTUES.forEach(function(v){ var n = num((d.vir||{})[v[0]]); if(n) marks += v[1].charAt(0) + n + " "; });
-    html += '<div class="entry"><div class="eh"><div class="ed">' + DOW[dt.getDay()].slice(0,3) + " " + ord(+p[2]) + " " + MON[+p[1]-1] + " " + p[0]
+    html += '<div class="entry" style="animation-delay:' + (idx*0.03) + 's"><div class="eh"><div class="ed">' + DOW[dt.getDay()].slice(0,3) + " " + ord(+p[2]) + " " + MON[+p[1]-1] + " " + p[0]
           + '</div><div class="en">' + num(d.rev) + " rev · " + num(d.nw) + " new" + (marks ? "<br>" + marks : "") + "</div></div>";
     if(String(d.aim||"").trim()) html += '<div class="aim">' + esc(d.aim) + "</div>";
     html += "<dl>";
@@ -904,7 +928,9 @@ function drawRec(){
     if(String(d.jrnl||"").trim()) html += '<dt class="jr">Journal</dt><dd>' + esc(d.jrnl) + "</dd>";
     html += "</dl></div>";
   });
-  box.innerHTML = html;
+  box.insertAdjacentHTML("beforeend", html);
+  recOffset += chunk.length;
+  $("loadMoreWrap").style.display = recOffset < recKeys.length ? "block" : "none";
 }
 
 /* ══ views ══ */
@@ -917,7 +943,10 @@ function show(n){
   for(var i = 0; i < b.length; i++) b[i].className = (b[i].getAttribute("data-v") === n ? "sel" : "");
   try{
     if(n === "cal"){ drawCal(); drawStats(); }
-    if(n === "rec"){ drawRec(); }
+    if(n === "rec"){
+      buildRecKeys();
+      drawRec(false);
+    }
   }catch(e){}
 }
 
@@ -951,7 +980,7 @@ $("grid").addEventListener("click", function(e){
 $("mPrev").addEventListener("click", function(){ cur.setMonth(cur.getMonth()-1); drawCal(); });
 $("mNext").addEventListener("click", function(){ cur.setMonth(cur.getMonth()+1); drawCal(); });
 
-/* ══ paste Anki stats ══ */
+/* paste Anki */
 $("bTogglePaste").addEventListener("click", function(){
   var area = $("pasteArea");
   var show = area.style.display === "none";
@@ -977,6 +1006,9 @@ $("bParse").addEventListener("click", function(){
   if(acc !== null) { $("f_acc").value = acc; $("f_acc").dispatchEvent(new Event('input')); }
   toast("Parsed stats filled");
 });
+
+/* load more */
+$("bLoadMore").addEventListener("click", function(){ drawRec(true); });
 
 var io = $("ioBox");
 $("bExport").addEventListener("click", function(){
@@ -1020,10 +1052,10 @@ function drawAll(){
   try{ drawForm(); }catch(e){}
   try{ drawCal(); }catch(e){}
   try{ drawStats(); }catch(e){}
-  try{ drawRec(); }catch(e){}
+  try{ buildRecKeys(); drawRec(false); }catch(e){}
 }
 
-/* ══ ambient: layered motes ══ */
+/* ══ ambient motes ══ */
 (function(){
   var host = $("motes");
   if(!host) return;
@@ -1031,7 +1063,7 @@ function drawAll(){
   function rnd(){ seed = (seed * 1103515245 + 12345) & 0x7fffffff; return seed / 0x7fffffff; }
   var frag = document.createDocumentFragment(), i;
   for(i = 0; i < 34; i++){
-    var depth = rnd(); /* 0 far/slow, 1 near/bright */
+    var depth = rnd();
     var m = document.createElement("div"), dot = document.createElement("i");
     m.className = "mote";
     if(depth < .33) m.classList.add("depth-far");
