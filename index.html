@@ -307,23 +307,43 @@ textarea.tall{min-height:230px;line-height:1.72}
 .fig b{display:block;font-family:var(--mono);font-size:23px;color:var(--bronze);font-weight:400;line-height:1.05}
 .fig span{display:block;font-family:var(--disp);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-top:6px}
 
-/* ── diverging bar chart ────────────────── */
+/* ── diverging bar chart – galaxy‑class clean ── */
 .diverge-wrap{margin-top:16px}
-.diverge-legend{display:flex;justify-content:center;gap:28px;margin-bottom:12px;font-family:var(--disp);font-size:9.5px;letter-spacing:.12em;
+.diverge-legend{display:flex;justify-content:center;gap:32px;margin-bottom:14px;font-family:var(--disp);font-size:9.5px;letter-spacing:.12em;
   text-transform:uppercase;color:var(--dim)}
-.diverge-legend span{display:flex;align-items:center;gap:6px}
+.diverge-legend span{display:flex;align-items:center;gap:7px}
 .diverge-legend span::before{content:"";display:block;width:12px;height:12px;border-radius:2px}
-.diverge-legend .leg-up::before{background:var(--verdigris)}
-.diverge-legend .leg-down::before{background:var(--bronze-lo)}
+.diverge-legend .leg-up::before{background:linear-gradient(180deg, #5A9686 0%, var(--verdigris) 100%)}
+.diverge-legend .leg-down::before{background:linear-gradient(180deg, var(--bronze) 0%, var(--bronze-lo) 100%)}
 .diverge-legend .leg-due::before{background:var(--bronze-ghost);border:1px solid rgba(180,137,78,.38)}
-.diverge{display:flex;align-items:stretch;height:96px;gap:2px;margin:0 1px}
+
+.diverge{display:flex;align-items:stretch;height:104px;gap:2px;margin:0 1px}
 .diverge .col{flex:1;position:relative;min-width:7px}
-.diverge .col::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--rule);z-index:1}
-.diverge .col .up{position:absolute;left:0;right:0;bottom:50%;background:var(--verdigris);border-radius:1px 1px 0 0;z-index:3;min-height:2px}
-.diverge .col .new-dot{position:absolute;left:50%;bottom:calc(50% + 3px);width:5px;height:5px;border-radius:50%;background:var(--verdigris);transform:translateX(-50%);z-index:5;display:none}
+/* centre line only visible when column has data */
+.diverge .col.has-data::after{
+  content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--rule);z-index:1
+}
+.diverge .col .up{
+  position:absolute;left:0;right:0;bottom:50%;
+  background:linear-gradient(180deg, #5A9686 0%, var(--verdigris) 100%);
+  border-radius:1px 1px 0 0;z-index:3;min-height:2px;
+}
+.diverge .col .new-dot{
+  position:absolute;left:50%;bottom:calc(50% + 3px);width:5px;height:5px;
+  border-radius:50%;background:var(--verdigris);transform:translateX(-50%);z-index:5;display:none;
+}
 .diverge .col .new-dot.visible{display:block}
-.diverge .col .due-bg{position:absolute;left:0;right:0;top:50%;background:var(--bronze-ghost);border-radius:0 0 1px 1px;z-index:2;box-shadow:inset 0 0 0 1px rgba(180,137,78,.22)}
-.diverge .col .down{position:absolute;left:0;right:0;top:50%;background:var(--bronze-lo);border-radius:0 0 1px 1px;z-index:4;min-height:2px}
+.diverge .col .due-bg{
+  position:absolute;left:0;right:0;top:50%;
+  background:linear-gradient(180deg, var(--bronze-ghost), rgba(180,137,78,.18));
+  border-radius:0 0 1px 1px;z-index:2;
+  box-shadow:inset 0 0 0 1px rgba(180,137,78,.26);
+}
+.diverge .col .down{
+  position:absolute;left:0;right:0;top:50%;
+  background:linear-gradient(180deg, var(--bronze) 0%, var(--bronze-lo) 100%);
+  border-radius:0 0 1px 1px;z-index:4;min-height:2px;
+}
 
 .sparkcap{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:8px}
 
@@ -651,7 +671,6 @@ if(!DB.days || typeof DB.days !== "object") DB.days = {};
 if(!DB.exam) DB.exam = "2026-12-06";
 function save(){ persist(DB); }
 
-/* migrate from v1 */
 if(!DB._migrated && localStorage.getItem("keikoroku.v1")){
   try{
     var old = JSON.parse(localStorage.getItem("keikoroku.v1"));
@@ -688,7 +707,6 @@ function worked(d){ return !!(d && (num(d.rev) || num(d.nw))); }
 function $(id){ return document.getElementById(id); }
 var fields = {};
 
-/* ── pagination for records ── */
 var recOffset = 0, recKeys = [], allRecKeysSorted = [];
 
 /* ══ render: header + counsel ══ */
@@ -833,13 +851,16 @@ function drawStats(){
   for(k in DB.days){ if(DB.days.hasOwnProperty(k) && examined(DB.days[k])) ex++; }
   $("s_exam").textContent = ex;
 
-  /* ── diverging chart ── */
+  /* ── diverging chart · clean gaps ── */
   var globalMax = Math.max(maxRev, maxNw, maxDue, 1);
-  var halfH = 44; /* available pixels each side of centre in 96px container */
+  var halfH = 44;
   var diverge = $("diverge"); diverge.innerHTML = "";
   w.forEach(function(x){
-    var col = document.createElement("div"); col.className = "col";
     var r = num(x.d.rev), n = num(x.d.nw), d = num(x.d.due);
+    var hasData = (r > 0 || n > 0 || d > 0);
+    var col = document.createElement("div");
+    col.className = "col" + (hasData ? " has-data" : "");
+    if(!hasData){ diverge.appendChild(col); return; }
 
     var hUp = Math.round(n / globalMax * halfH);
     if(n > 0 && hUp < 2) hUp = 2;
@@ -1007,7 +1028,6 @@ $("bParse").addEventListener("click", function(){
   toast("Parsed stats filled");
 });
 
-/* load more */
 $("bLoadMore").addEventListener("click", function(){ drawRec(true); });
 
 var io = $("ioBox");
