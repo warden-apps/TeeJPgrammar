@@ -1,1 +1,1 @@
-# bjt-study
+# Stoic-Note
